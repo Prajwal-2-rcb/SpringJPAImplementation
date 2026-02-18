@@ -3,6 +3,7 @@ package com.codesnippet.jpaimplementation.repositories;
 import com.codesnippet.jpaimplementation.entities.Applicant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface ApplicantJPARepository extends JpaRepository<Applicant, Long> {
 
 
     @Query("SELECT a from Applicant a where a.name like %:name%")
-    List<Applicant> findApplicantsByPartialName(String name);
+    List<Applicant> findApplicantsByPartialName(@Param("name") String name);
 }
 
 
