@@ -37,6 +37,11 @@ public class ApplicantController {
         return applicantService.getApplicantByStatus(status);
     }
 
+    @GetMapping("/getByPartialName")
+    public List<Applicant> getApplicantWithPartialName(@RequestParam String partialName) {
+        return applicantService.getApplicantByPartialName(partialName);
+    }
+
 
 
 }

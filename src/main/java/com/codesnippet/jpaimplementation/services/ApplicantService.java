@@ -53,4 +53,8 @@ public class ApplicantService {
     public List<Applicant> getApplicantByStatus(String status) {
         return applicantJPARepository.findByStatusOrderByNameAsc(status);
     }
+
+    public List<Applicant> getApplicantByPartialName(String name) {
+        return applicantJPARepository.findApplicantsByPartialName(name);
+    }
 }
