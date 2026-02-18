@@ -27,6 +27,11 @@ public class ApplicantController {
         return applicantService.saveApplicantCrud(applicant);
     }
 
+    @GetMapping("/page")
+    public Iterable<Applicant> getApplicantWithPagination(@RequestParam int page, @RequestParam int size) {
+        return applicantService.getApplicantWithPagination(page,size);
+    }
+
 
 
 }
