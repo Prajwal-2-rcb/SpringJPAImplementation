@@ -1,6 +1,7 @@
 package com.codesnippet.jpaimplementation.services;
 
 import com.codesnippet.jpaimplementation.entities.Applicant;
+import com.codesnippet.jpaimplementation.repositories.ApplicantJPARepository;
 import com.codesnippet.jpaimplementation.repositories.ApplicantListCrudRepository;
 import com.codesnippet.jpaimplementation.repositories.ApplicantPagingAndSortingRepository;
 import com.codesnippet.jpaimplementation.repositories.ApplicantRepository;
@@ -19,11 +20,15 @@ public class ApplicantService {
 
     private final ApplicantListCrudRepository applicantListCrudRepository;
 
+    private final ApplicantJPARepository applicantJPARepository;
+
     public ApplicantService(ApplicantRepository applicantRepository,ApplicantPagingAndSortingRepository applicantPagingAndSortingRepository,
-                            ApplicantListCrudRepository applicantListCrudRepository) {
+                            ApplicantListCrudRepository applicantListCrudRepository,
+                            ApplicantJPARepository applicantJPARepository) {
         this.applicantRepository = applicantRepository;
         this.applicantPagingAndSortingRepository = applicantPagingAndSortingRepository;
         this.applicantListCrudRepository = applicantListCrudRepository;
+        this.applicantJPARepository = applicantJPARepository;
     }
 
     public  Applicant saveApplicantCrud(Applicant applicant) {
@@ -43,5 +48,9 @@ public class ApplicantService {
     public Iterable<Applicant> getApplicantWithPagination(int page, int size) {
         return applicantPagingAndSortingRepository.findAll(PageRequest.of(page, size));
 
+    }
+
+    public List<Applicant> getApplicantByStatus(String status) {
+        return applicantJPARepository.findByStatusOrderByNameAsc(status);
     }
 }

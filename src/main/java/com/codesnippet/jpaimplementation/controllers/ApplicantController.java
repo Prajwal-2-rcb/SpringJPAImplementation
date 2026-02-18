@@ -32,6 +32,11 @@ public class ApplicantController {
         return applicantService.getApplicantWithPagination(page,size);
     }
 
+    @GetMapping("/getByStatus")
+    public List<Applicant> getApplicantWithStatus(@RequestParam String status) {
+        return applicantService.getApplicantByStatus(status);
+    }
+
 
 
 }
