@@ -1,6 +1,7 @@
 package com.codesnippet.jpaimplementation.services;
 
 import com.codesnippet.jpaimplementation.entities.Applicant;
+import com.codesnippet.jpaimplementation.repositories.ApplicantListCrudRepository;
 import com.codesnippet.jpaimplementation.repositories.ApplicantPagingAndSortingRepository;
 import com.codesnippet.jpaimplementation.repositories.ApplicantRepository;
 import org.springframework.data.domain.PageRequest;
@@ -16,9 +17,13 @@ public class ApplicantService {
 
     private final ApplicantPagingAndSortingRepository applicantPagingAndSortingRepository;
 
-    public ApplicantService(ApplicantRepository applicantRepository,ApplicantPagingAndSortingRepository applicantPagingAndSortingRepository) {
+    private final ApplicantListCrudRepository applicantListCrudRepository;
+
+    public ApplicantService(ApplicantRepository applicantRepository,ApplicantPagingAndSortingRepository applicantPagingAndSortingRepository,
+                            ApplicantListCrudRepository applicantListCrudRepository) {
         this.applicantRepository = applicantRepository;
         this.applicantPagingAndSortingRepository = applicantPagingAndSortingRepository;
+        this.applicantListCrudRepository = applicantListCrudRepository;
     }
 
     public  Applicant saveApplicantCrud(Applicant applicant) {
@@ -27,10 +32,11 @@ public class ApplicantService {
     }
 
     public  List<Applicant> getAllApplicants() {
-        Iterable<Applicant> all=applicantRepository.findAll();
-        List<Applicant> applicantList=new ArrayList<Applicant>();
-        all.forEach(applicantList::add);
-        return applicantList;
+//        Iterable<Applicant> all=applicantRepository.findAll();
+//        List<Applicant> applicantList=new ArrayList<Applicant>();
+//        all.forEach(applicantList::add);
+//        return applicantList;
+        return applicantListCrudRepository.findAll();
 
     }
 
