@@ -20,7 +20,7 @@ public class Resume {
 
     private String content;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name="applicant_id" , nullable = false ,referencedColumnName = "id")
     @JsonIgnore
     private Applicant applicant;
