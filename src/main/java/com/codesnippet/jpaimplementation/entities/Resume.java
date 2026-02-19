@@ -1,5 +1,6 @@
 package com.codesnippet.jpaimplementation.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,5 +22,6 @@ public class Resume {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="applicant_id" , nullable = false ,referencedColumnName = "id")
+    @JsonIgnore
     private Applicant applicant;
 }

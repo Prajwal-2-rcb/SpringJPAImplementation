@@ -1,6 +1,7 @@
 package com.codesnippet.jpaimplementation.services;
 
 import com.codesnippet.jpaimplementation.entities.Applicant;
+import com.codesnippet.jpaimplementation.entities.Resume;
 import com.codesnippet.jpaimplementation.repositories.ApplicantJPARepository;
 import com.codesnippet.jpaimplementation.repositories.ApplicantListCrudRepository;
 import com.codesnippet.jpaimplementation.repositories.ApplicantPagingAndSortingRepository;
@@ -32,6 +33,10 @@ public class ApplicantService {
     }
 
     public  Applicant saveApplicantCrud(Applicant applicant) {
+        Resume resume = applicant.getResume();
+        if(resume!=null){
+            resume.setApplicant(applicant);
+        }
         return applicantRepository.save(applicant);
 
     }

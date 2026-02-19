@@ -1,10 +1,7 @@
 package com.codesnippet.jpaimplementation.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,4 +27,10 @@ public class Applicant {
     private String phone;
 
     private String status;
+
+    @OneToOne(mappedBy = "applicant", cascade = CascadeType.ALL)
+    //here first resume get added then applicant added for that we need to use cascade
+    private Resume resume;
+    //Adding a resume while adding Applicant itself
+    //If we not used this we need to add a résumé separately
 }
