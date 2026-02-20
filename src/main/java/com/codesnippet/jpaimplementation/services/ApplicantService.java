@@ -1,6 +1,7 @@
 package com.codesnippet.jpaimplementation.services;
 
 import com.codesnippet.jpaimplementation.entities.Applicant;
+import com.codesnippet.jpaimplementation.entities.Application;
 import com.codesnippet.jpaimplementation.entities.Resume;
 import com.codesnippet.jpaimplementation.repositories.ApplicantJPARepository;
 import com.codesnippet.jpaimplementation.repositories.ApplicantListCrudRepository;
@@ -34,8 +35,14 @@ public class ApplicantService {
 
     public  Applicant saveApplicantCrud(Applicant applicant) {
         Resume resume = applicant.getResume();
+        List<Application> applications = applicant.getApplications();
         if(resume!=null){
             resume.setApplicant(applicant);
+        }
+        if(applications!=null){
+            for (Application application : applications) {
+                application.setApplicant(applicant);
+            }
         }
         return applicantRepository.save(applicant);
 

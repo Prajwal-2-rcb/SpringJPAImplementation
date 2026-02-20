@@ -7,6 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -33,4 +36,7 @@ public class Applicant {
     private Resume resume;
     //Adding a resume while adding Applicant itself
     //If we not used this we need to add a résumé separately
+
+    @OneToMany(mappedBy = "applicant" , cascade = CascadeType.ALL)
+    private List<Application> applications=new ArrayList<>();
 }
