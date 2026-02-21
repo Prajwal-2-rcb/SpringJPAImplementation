@@ -24,6 +24,7 @@ public class ApplicantController {
 
     @PostMapping
     public Applicant saveApplicant(@RequestBody Applicant applicant) {
+        System.out.println("Reached controller");
         return applicantService.saveApplicantCrud(applicant);
     }
 
